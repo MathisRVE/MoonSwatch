@@ -1,0 +1,26 @@
+📸 PHOTOS DES SÉLECTIONS (onglet « Sélections »)
+=================================================
+
+Chaque sélection affiche la photo images/prets/<id>.png (ou .jpg).
+Tant qu'une photo manque, un visuel stylisé s'affiche à la place.
+Format conseillé : carré (ex. 1000x1000 px), fond sombre/neutre.
+
+Le nom du fichier = l'« id » de la sélection dans data/watches.js (bloc modelesPrets).
+
+ÉTAT ACTUEL
+-----------
+✅ Photos en place (16) :
+   eclipse-totale, signature-or, planete-rouge, bleu-profond, terre-vive,
+   geante-ambre, anneaux-or, glace-cyan, naine-bordeaux, nouvelle-lune,
+   lave-incandescente, aurore-polaire, esprit-desert, phase-terrestre,
+   heritage-1965, lune-rose
+
+⬜ Photos encore à déposer (3) :
+   images/prets/nuit-argentee.png     -> Nuit Argentée   (Mission to Mercury)
+   images/prets/rose-poudre.png       -> Rose Poudré     (Mission to Venus)
+   images/prets/pleine-lune.png       -> Pleine Lune     (Moonphase – Full Moon)
+
+NON UTILISÉES (aucune sélection ne leur correspond pour l'instant) :
+   Mission to the Moonphase - Snoopy.png
+   Mission to the Super Blue Moonphase.png
+   -> dites-moi si vous voulez en faire de nouvelles sélections.

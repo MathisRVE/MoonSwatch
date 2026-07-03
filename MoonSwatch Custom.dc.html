@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#070a12;}
+  *{box-sizing:border-box;}
+  ::selection{background:#FFEC00;color:#070a12;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#070a12;color:#e8ecf5;font-family:'Space Grotesk',sans-serif;background-image:radial-gradient(1px 1px at 8% 12%,#fff,transparent),radial-gradient(1px 1px at 24% 38%,#9fb6e0,transparent),radial-gradient(1.3px 1.3px at 52% 16%,#fff,transparent),radial-gradient(1px 1px at 71% 44%,#cfe,transparent),radial-gradient(1px 1px at 86% 22%,#fff,transparent),radial-gradient(1.2px 1.2px at 92% 64%,#9fb6e0,transparent),radial-gradient(1px 1px at 14% 72%,#fff,transparent),radial-gradient(1px 1px at 38% 86%,#fff,transparent),radial-gradient(1px 1px at 64% 78%,#9fb6e0,transparent);background-attachment:fixed">
+
+  <!-- ============ HEADER ============ -->
+  <div style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:15px 40px;background:rgba(7,10,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid #141b2b">
+    <div onClick="{{ goAccueil }}" style="font-family:'Space Mono',monospace;font-size:15px;letter-spacing:.06em;cursor:pointer;white-space:nowrap">◐ MOONSWATCH <span style="color:#FFEC00">/CUSTOM</span></div>
+    <div style="display:flex;gap:28px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9aa6c0">
+      <span onClick="{{ goAccueil }}" style="cursor:pointer">Accueil</span>
+      <span onClick="{{ goCatalogue }}" style="cursor:pointer">Catalogue</span>
+      <span onClick="{{ goPrets }}" style="cursor:pointer">Nos créations</span>
+      <span onClick="{{ goCommander }}" style="cursor:pointer">Commander</span>
+    </div>
+    <div onClick="{{ goConfig }}" style="background:#FFEC00;color:#070a12;font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.08em;padding:11px 18px;border-radius:3px;cursor:pointer;white-space:nowrap">CONFIGURER →</div>
+  </div>
+
+  <!-- ============ ACCUEIL ============ -->
+  <sc-if value="{{ vAccueil }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));align-items:center;gap:30px;padding:64px 40px 48px;max-width:1280px;margin:0 auto">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:22px">// SYS.PERSONNALISATION — 24 MISSIONS DISPONIBLES</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:92px;line-height:.9;letter-spacing:.01em">VOTRE MISSION,<br><span style="color:#FFEC00">VOTRE MONTRE.</span></div>
+        <p style="max-width:440px;color:#9aa6c0;font-size:16px;line-height:1.65;margin:24px 0 30px">Vingt-quatre MoonSwatch de base. Boîtier, bracelet, lunette : composez la vôtre, puis envoyez-la moi en un clic sur Instagram.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <div onClick="{{ goConfig }}" style="background:#FFEC00;color:#070a12;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:15px 26px;border-radius:3px;cursor:pointer">Ouvrir le configurateur →</div>
+          <div onClick="{{ goCatalogue }}" style="border:1px solid #2a3550;color:#e8ecf5;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:15px 26px;border-radius:3px;cursor:pointer">Voir les 24 modèles</div>
+        </div>
+      </div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;min-height:340px">
+        <div style="position:absolute;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#1a3a6e,#070a12 72%);box-shadow:0 0 90px rgba(110,168,255,.22)"></div>
+        <div style="position:absolute;width:360px;height:360px;border-radius:50%;border:1px solid #1c2740"></div>
+        <div style="position:relative">{{ heroWatch }}</div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;border-top:1px solid #141b2b;border-bottom:1px solid #141b2b;font-family:'Space Mono',monospace;font-size:12px;color:#7e8aa3;max-width:1280px;margin:0 auto">
+      <div style="flex:1;min-width:200px;padding:18px 40px;border-right:1px solid #141b2b">À PARTIR DE <span style="color:#FFEC00;font-size:15px">170 €</span></div>
+      <div style="flex:1;min-width:200px;padding:18px 40px;border-right:1px solid #141b2b">DÉLAI <span style="color:#FFEC00;font-size:15px">2–4 SEMAINES</span></div>
+      <div style="flex:1;min-width:200px;padding:18px 40px">CONTACT <span style="color:#FFEC00;font-size:15px">@MAT_698RVE</span></div>
+    </div>
+
+    <div style="max-width:1280px;margin:0 auto;padding:56px 40px 64px">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:12px">// MODE D'EMPLOI</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:.02em;line-height:.95;margin-bottom:10px">COMMENT M'ENVOYER VOTRE CHOIX</div>
+      <p style="color:#9aa6c0;font-size:15px;line-height:1.65;max-width:640px;margin:0 0 28px">Tout se passe sur Instagram, en trois étapes simples. Aucune inscription, aucun paiement sur le site.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+        <div style="border:1px solid #1c2740;border-radius:8px;padding:26px;background:#0b1120">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6ea8ff;margin-bottom:12px">01</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:8px">CHOISISSEZ</div>
+          <p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Composez votre montre dans le <span style="color:#e8ecf5">Configurateur</span>, ou prenez une composition prête dans <span style="color:#e8ecf5">Nos créations</span>.</p>
+        </div>
+        <div style="border:1px solid #1c2740;border-radius:8px;padding:26px;background:#0b1120">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6ea8ff;margin-bottom:12px">02</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:8px">CLIQUEZ « DEMANDER »</div>
+          <p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Choisissez votre messagerie : <span style="color:#e8ecf5">WhatsApp</span> (message déjà écrit), <span style="color:#e8ecf5">Instagram</span> ou <span style="color:#e8ecf5">Snapchat</span>. <span style="color:#FFEC00">Sur Instagram et Snapchat, le récapitulatif est copié : collez-le dans le message (clic droit → Coller), puis envoyez.</span></p>
+        </div>
+        <div style="border:1px solid #1c2740;border-radius:8px;padding:26px;background:#0b1120">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:#6ea8ff;margin-bottom:12px">03</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:8px">JE VOUS RÉPONDS</div>
+          <p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Je vérifie la disponibilité, je confirme le prix (à partir de 170 €) et le délai (2–4 semaines), puis je réalise votre montre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ CATALOGUE ============ -->
+  <sc-if value="{{ vCatalogue }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto;padding:48px 40px 64px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:10px">// LA FLOTTE</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:.02em;line-height:.9">LE CATALOGUE <span style="color:#FFEC00">· 24 MODÈLES</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ filtres }}" as="f" hint-placeholder-count="5">
+          <div onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.nom }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px">
+      <sc-for list="{{ catalogue }}" as="m" hint-placeholder-count="24">
+        <div onClick="{{ m.onFiche }}" style="border:1px solid #1c2740;border-radius:8px;background:radial-gradient(circle at 50% 24%,#101a2e,#0a0e18);padding:26px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer">
+          <div style="margin-bottom:14px">{{ m.vignette }}</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.02em;line-height:1.02">{{ m.nom }}</div>
+          <div style="font-size:12px;color:#7e8aa3;margin-top:8px;line-height:1.45;min-height:36px">{{ m.description }}</div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFEC00;margin-top:12px">PERSONNALISER →</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ SÉLECTIONS (modèles prêts) ============ -->
+  <sc-if value="{{ vPrets }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto;padding:48px 40px 64px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:10px">// PRÊTES À COMMANDER</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:.02em;line-height:.9;margin-bottom:10px">NOS CRÉATIONS</div>
+    <p style="color:#9aa6c0;font-size:16px;line-height:1.6;max-width:560px;margin:0 0 30px">Des compositions déjà imaginées, proposées telles quelles — prêtes à commander.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+      <sc-for list="{{ prets }}" as="p" hint-placeholder-count="3">
+        <div style="border:1px solid #1c2740;border-radius:10px;background:radial-gradient(circle at 50% 24%,#101a2e,#0a0e18);padding:22px 18px;display:flex;flex-direction:column;align-items:center;text-align:center">
+          <div style="margin-bottom:16px;width:100%">{{ p.vignette }}</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:.02em;line-height:1.02">{{ p.nom }}</div>
+          <div style="font-size:12px;color:#7e8aa3;margin-top:10px;line-height:1.5;min-height:52px">{{ p.resume }}</div>
+          <div onClick="{{ p.onDemander }}" style="margin-top:12px;width:100%;background:#FFEC00;color:#070a12;font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.05em;padding:13px 16px;border-radius:3px;cursor:pointer;text-align:center">DEMANDER CE MODÈLE</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ FICHE MODÈLE ============ -->
+  <sc-if value="{{ vModele }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto;padding:40px 40px 64px">
+    <div onClick="{{ goCatalogue }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#7e8aa3;cursor:pointer;letter-spacing:.08em;margin-bottom:24px">← RETOUR AU CATALOGUE</div>
+    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:60px;letter-spacing:.02em;line-height:.9">{{ ficheNom }}</div>
+      <div style="width:18px;height:18px;border-radius:50%;background:{{ ficheAccent }}"></div>
+    </div>
+    <p style="color:#9aa6c0;font-size:16px;line-height:1.6;max-width:560px;margin:0 0 34px">{{ ficheDescription }}</p>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6ea8ff;margin-bottom:18px">// COMPARATIF</div>
+    {{ comparatif }}
+    <div style="margin-top:34px;display:flex;gap:14px;flex-wrap:wrap">
+      <div onClick="{{ ficheConfigurer }}" style="background:#FFEC00;color:#070a12;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:15px 26px;border-radius:3px;cursor:pointer">Personnaliser ce modèle →</div>
+      <div onClick="{{ goCatalogue }}" style="border:1px solid #2a3550;color:#e8ecf5;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:15px 26px;border-radius:3px;cursor:pointer">Autres modèles</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ CONFIGURATEUR ============ -->
+  <sc-if value="{{ vConfig }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1280px;margin:0 auto;padding:40px 40px 64px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:14px">// CONFIGURATEUR — CHOISISSEZ UN MODÈLE, PUIS RÉGLEZ LES 3 AXES</div>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:26px">
+      <sc-for list="{{ configModels }}" as="cm" hint-placeholder-count="8">
+        <div onClick="{{ cm.onClick }}" style="{{ cm.style }}">{{ cm.nom }}</div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:24px;align-items:start">
+      <!-- preview + recap -->
+      <div style="border:1px solid #1c2740;border-radius:10px;background:radial-gradient(circle at 50% 35%,#0e1626,#080b14);padding:36px 24px;display:flex;flex-direction:column;align-items:center">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.03em;margin-bottom:24px;text-align:center">{{ configNom }}</div>
+        <div style="width:100%;max-width:320px;border:1px dashed #2a3550;border-radius:10px;padding:30px 22px;text-align:center;background:rgba(255,236,0,.04)">
+          <div style="font-size:30px;margin-bottom:12px">📸</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.02em;margin-bottom:10px">APERÇU SUR DEMANDE</div>
+          <p style="color:#9aa6c0;font-size:13px;line-height:1.65;margin:0">La visualisation de votre montre configurée vous est envoyée <strong style="color:#e8ecf5">sur demande</strong>. Cliquez sur « Demander » ci-dessous : je reçois vos choix sur Instagram et je vous renvoie un aperçu réel de la montre.</p>
+        </div>
+        <div style="margin-top:28px;width:100%;max-width:320px;border:1px solid #1c2740;border-radius:6px;padding:16px 18px;background:#0b1120;font-family:'Space Mono',monospace;font-size:13px">
+          <div style="font-size:9px;letter-spacing:.16em;color:#5a6680;margin-bottom:12px">RÉCAPITULATIF</div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #141b2b;color:#7e8aa3">Modèle<span style="color:#e8ecf5;text-align:right">{{ configNom }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #141b2b;color:#7e8aa3">Boîtier<span style="color:#e8ecf5">{{ recapBoitier }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #141b2b;color:#7e8aa3">Bracelet<span style="color:#e8ecf5;text-align:right">{{ recapBracelet }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;color:#7e8aa3">Lunette<span style="color:#FFEC00;text-align:right">{{ recapLunette }}</span></div>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">01 · Boîtier</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapBoitier }}</div></div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <sc-for list="{{ boitierOpts }}" as="o" hint-placeholder-count="4">
+              {{ o }}
+            </sc-for>
+          </div>
+        </div>
+        <div style="height:1px;background:#141b2b"></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">02 · Bracelet</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapBracelet }}</div></div>
+          <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px">
+            <sc-for list="{{ braceletMats }}" as="bm" hint-placeholder-count="3">
+              <div onClick="{{ bm.onClick }}" style="{{ bm.style }}">{{ bm.nom }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <sc-for list="{{ braceletCouleurs }}" as="bc" hint-placeholder-count="6">
+              {{ bc }}
+            </sc-for>
+          </div>
+        </div>
+        <div style="height:1px;background:#141b2b"></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">03 · Lunette</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapLunette }}</div></div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <sc-for list="{{ lunetteOpts }}" as="lo" hint-placeholder-count="7">
+              {{ lo }}
+            </sc-for>
+          </div>
+        </div>
+        <div style="height:1px;background:#141b2b"></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div onClick="{{ demander }}" style="flex:1;min-width:220px;background:#FFEC00;color:#070a12;text-align:center;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:16px;border-radius:3px;cursor:pointer">Demander ce modèle</div>
+          <div onClick="{{ copier }}" style="border:1px solid #2a3550;padding:16px 20px;font-size:13px;color:#e8ecf5;border-radius:3px;cursor:pointer;font-family:'Space Mono',monospace">{{ copyLabel }}</div>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#5a6680;line-height:1.6">◇ Personnalisation soumise à vérification de disponibilité auprès des fournisseurs avant confirmation.</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ COMMANDER ============ -->
+  <sc-if value="{{ vCommander }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1000px;margin:0 auto;padding:48px 40px 64px">
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:#6ea8ff;margin-bottom:12px">// MISSION BRIEFING</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:.02em;line-height:.9;margin-bottom:14px">COMMENT COMMANDER</div>
+    <p style="color:#9aa6c0;font-size:16px;line-height:1.65;max-width:600px;margin:0 0 40px">Un service artisanal et direct. Voici le déroulé, de votre idée à la montre au poignet.</p>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:44px">
+      <div style="display:flex;gap:20px;align-items:flex-start;border:1px solid #1c2740;border-radius:8px;padding:22px 24px;background:#0b1120">
+        <div style="font-family:'Space Mono',monospace;font-size:13px;color:#6ea8ff;min-width:32px">01</div>
+        <div><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:6px">CONTACTEZ-MOI SUR INSTAGRAM</div><p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Via <span style="color:#FFEC00">@Mat_698RVE</span>, en précisant le modèle et les personnalisations souhaitées (le configurateur prépare le message pour vous).</p></div>
+      </div>
+      <div style="display:flex;gap:20px;align-items:flex-start;border:1px solid #1c2740;border-radius:8px;padding:22px 24px;background:#0b1120">
+        <div style="font-family:'Space Mono',monospace;font-size:13px;color:#6ea8ff;min-width:32px">02</div>
+        <div><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:6px">JE VOUS ENVOIE UN APERÇU</div><p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Selon vos choix, je vous renvoie un aperçu de la montre telle que configurée, et je vérifie la disponibilité auprès des fournisseurs avant confirmation.</p></div>
+      </div>
+      <div style="display:flex;gap:20px;align-items:flex-start;border:1px solid #1c2740;border-radius:8px;padding:22px 24px;background:#0b1120">
+        <div style="font-family:'Space Mono',monospace;font-size:13px;color:#6ea8ff;min-width:32px">03</div>
+        <div><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.02em;margin-bottom:6px">RÉALISATION & LIVRAISON</div><p style="color:#9aa6c0;font-size:14px;line-height:1.6;margin:0">Une fois confirmée, votre montre est personnalisée avec soin, puis vous est remise.</p></div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:44px">
+      <div style="border:1px solid #1c2740;border-radius:8px;padding:26px;background:radial-gradient(circle at 50% 20%,#101a2e,#0a0e18)">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7e8aa3;letter-spacing:.1em;margin-bottom:10px">TARIF</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#FFEC00;line-height:.9">170 €<span style="font-size:24px;color:#e8ecf5">+</span></div>
+        <div style="color:#9aa6c0;font-size:13px;margin-top:8px">Variable selon le modèle et la complexité.</div>
+      </div>
+      <div style="border:1px solid #1c2740;border-radius:8px;padding:26px;background:radial-gradient(circle at 50% 20%,#101a2e,#0a0e18)">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#7e8aa3;letter-spacing:.1em;margin-bottom:10px">DÉLAI</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#FFEC00;line-height:.9">2–4 SEM.</div>
+        <div style="color:#9aa6c0;font-size:13px;margin-top:8px">Rallongeable en cas d'aléa logistique fournisseur.</div>
+      </div>
+    </div>
+
+    <div onClick="{{ goConfig }}" style="display:inline-block;background:#FFEC00;color:#070a12;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:16px 28px;border-radius:3px;cursor:pointer">Composer ma montre →</div>
+  </div>
+  </sc-if>
+
+  <!-- ============ CHOIX DU CONTACT ============ -->
+  <sc-if value="{{ vContact }}" hint-placeholder-val="{{ true }}">
+  <div style="position:fixed;inset:0;z-index:100;background:rgba(4,6,12,.82);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px">
+    <div style="width:100%;max-width:430px;border:1px solid #1c2740;border-radius:14px;background:radial-gradient(circle at 50% 0%,#101a2e,#0a0e18);padding:30px 26px">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6ea8ff;margin-bottom:10px">// ENVOYER MA DEMANDE</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:.02em;line-height:1;margin-bottom:10px">OÙ M'ÉCRIRE ?</div>
+      <p style="color:#9aa6c0;font-size:13px;line-height:1.65;margin:0 0 22px">Choisissez votre messagerie. <span style="color:#FFEC00">Sur Instagram et Snapchat, votre récapitulatif est copié automatiquement : il ne reste qu'à le coller (clic droit → Coller, ou appui long → Coller) dans la barre de message.</span> Sur WhatsApp, le message est déjà écrit.</p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div onClick="{{ contactWhatsapp }}" style="background:#25D366;color:#04210f;font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.03em;padding:15px 18px;border-radius:6px;cursor:pointer;text-align:center">WhatsApp · message déjà écrit ✓</div>
+        <div onClick="{{ contactInstagram }}" style="border:1px solid #2a3550;color:#e8ecf5;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.03em;padding:15px 18px;border-radius:6px;cursor:pointer;text-align:center">Instagram · copié — à coller</div>
+        <div onClick="{{ contactSnapchat }}" style="border:1px solid #2a3550;color:#e8ecf5;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.03em;padding:15px 18px;border-radius:6px;cursor:pointer;text-align:center">Snapchat · copié — à coller</div>
+      </div>
+      <div onClick="{{ fermerContact }}" style="text-align:center;margin-top:20px;font-family:'Space Mono',monospace;font-size:11px;color:#5a6680;cursor:pointer;letter-spacing:.08em">FERMER ✕</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <div style="border-top:1px solid #141b2b;padding:34px 40px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;color:#5a6680">
+    <div style="display:flex;gap:8px;align-items:center"><span style="color:#9aa6c0">◐ MOONSWATCH /CUSTOM</span> · @Mat_698RVE</div>
+    <div style="max-width:560px;line-height:1.6;color:#5a6680">Service de personnalisation indépendant — non affilié officiellement à Omega ni à Swatch. Les noms de modèles sont donnés à titre de référence. © {{ annee }}</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;tintByPlanet&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;glowEffect&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = {
+    view: "accueil",
+    modeleId: "saturn",
+    boitierId: "noir",
+    braceletMatId: "caoutchouc",
+    braceletCouleurId: "noir",
+    lunetteId: "noir-tachy-orange",
+    filtre: "tous",
+    copied: false,
+    contactOpen: false,
+    contactText: "",
+    data: null,
+  };
+
+  async componentDidMount() {
+    const d = await import("./data/watches.js");
+    const patch = { data: d.default };
+    try {
+      const mod = new URLSearchParams(window.location.search).get("modele");
+      if (mod && d.default.montres.some(x => x.id === mod)) { patch.view = "modele"; patch.modeleId = mod; }
+    } catch (e) {}
+    this.setState(patch);
+  }
+
+  // ---- option lookups ----
+  curModele() { return this.state.data.montres.find(m => m.id === this.state.modeleId) || this.state.data.montres[0]; }
+  curBoitier() { return this.state.data.optionsBoitier.choices.find(c => c.id === this.state.boitierId) || this.state.data.optionsBoitier.choices[0]; }
+  curMat() { return this.state.data.optionsBracelet.materiaux.find(m => m.id === this.state.braceletMatId) || this.state.data.optionsBracelet.materiaux[0]; }
+  curCoul() { const mat = this.curMat(); return mat.couleurs.find(c => c.id === this.state.braceletCouleurId) || mat.couleurs[0]; }
+  // lunettes réellement disponibles pour le boîtier courant
+  lunettesDispo() { const ol = this.state.data.optionsLunette; const ids = ol.parBoitier[this.state.boitierId] || []; return ids.map(id => ol.types.find(t => t.id === id)).filter(Boolean); }
+  curLunette() { const dispo = this.lunettesDispo(); return dispo.find(c => c.id === this.state.lunetteId) || dispo[0]; }
+
+  // ---- watch builder (CSS layers, no SVG) ----
+  buildWatch(o) {
+    const el = React.createElement;
+    const D = {
+      lg: { w: 200, h: 262, c: 160, bz: 142, dl: 112, sb: 28, sw: 104, sh: 112, ph: [11, 17] },
+      md: { w: 168, h: 220, c: 140, bz: 124, dl: 98, sb: 24, sw: 90, sh: 96, ph: [10, 15] },
+      sm: { w: 96,  h: 120, c: 82,  bz: 70,  dl: 54, sb: 13, sw: 52, sh: 52, ph: [7, 10] },
+    }[o.size || "md"];
+    const caseC = o.caseC || "#2a3550", bezelC = o.bezelC || "#3a3d42", dialC = o.dialC || "#06080f",
+          subC = o.subC || "#16213a", strapC = o.strapC || "#161d2b", handC = o.handC || "#cfe0ff",
+          accentC = o.accentC || "#6ea8ff", tachyC = o.tachyC;
+    const abs = s => ({ position: "absolute", ...s });
+    const subs = [
+      { top: D.dl * 0.12, left: (D.dl - D.sb) / 2 },
+      { top: D.dl * 0.50, left: D.dl * 0.16 },
+      { top: D.dl * 0.50, left: D.dl - D.dl * 0.16 - D.sb },
+    ];
+    const dial = el("div", { style: { position: "relative", width: D.dl, height: D.dl, borderRadius: "50%", background: dialC } }, [
+      ...subs.map((p, i) => el("div", { key: "s" + i, style: abs({ width: D.sb, height: D.sb, borderRadius: "50%", background: subC, top: p.top, left: p.left }) })),
+      el("div", { key: "h1", style: abs({ left: "50%", top: "50%", width: 3, height: D.dl * 0.36, background: handC, transformOrigin: "bottom center", transform: "translate(-50%,-100%) rotate(28deg)", borderRadius: 2 }) }),
+      el("div", { key: "h2", style: abs({ left: "50%", top: "50%", width: 3, height: D.dl * 0.27, background: handC, transformOrigin: "bottom center", transform: "translate(-50%,-100%) rotate(-70deg)", borderRadius: 2 }) }),
+      el("div", { key: "c", style: abs({ left: "50%", top: "50%", width: 8, height: 8, borderRadius: "50%", background: accentC, transform: "translate(-50%,-50%)" }) }),
+    ]);
+    const ringW = D.bz > 90 ? 7 : 4;
+    const dialWrap = tachyC
+      ? el("div", { style: { width: D.dl + ringW * 2, height: D.dl + ringW * 2, borderRadius: "50%", background: tachyC, display: "flex", alignItems: "center", justifyContent: "center" } }, dial)
+      : dial;
+    const bezel = el("div", { style: { width: D.bz, height: D.bz, borderRadius: "50%", background: bezelC, display: "flex", alignItems: "center", justifyContent: "center" } }, dialWrap);
+    const glow = (o.glow && this.props.glowEffect !== false) ? `,0 0 50px ${o.glow}` : "";
+    const caseEl = el("div", { style: { position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: D.c, height: D.c, borderRadius: "50%", background: caseC, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 18px 40px rgba(0,0,0,.5)${glow}` } }, bezel);
+    return el("div", { style: { position: "relative", width: D.w, height: D.h } }, [
+      el("div", { key: "st", style: abs({ top: 0, left: "50%", transform: "translateX(-50%)", width: D.sw, height: D.sh, background: strapC, borderRadius: "14px 14px 6px 6px" }) }),
+      el("div", { key: "sbm", style: abs({ bottom: 0, left: "50%", transform: "translateX(-50%)", width: D.sw, height: D.sh, background: strapC, borderRadius: "6px 6px 14px 14px" }) }),
+      el("div", { key: "pu", style: abs({ top: "50%", right: (D.w - D.c) / 2 - 2, width: D.ph[0], height: D.ph[1], background: accentC, borderRadius: 3, transform: "translateY(-50%)" }) }),
+      caseEl,
+    ]);
+  }
+
+  // catalogue/featured vignette : montre stylisée + photo réelle par-dessus (si dispo)
+  themedVignette(model) {
+    const el = React.createElement;
+    const photos = !!this.state.data.afficherPhotos;
+    return el("div", { key: model.id, style: { position: "relative", width: 124, height: 150, display: "flex", alignItems: "center", justifyContent: "center" } }, [
+      el("div", { key: "w" }, this.themed("sm", model.accent)),
+      photos ? el("img", { key: "i", src: model.imageOriginale, alt: model.nom, onError: e => { e.target.style.display = "none"; }, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: 8, background: "#0a0e18" } }) : null,
+    ]);
+  }
+
+  // vignette d'une CRÉATION (onglet Nos créations) : montre stylisée en attendant,
+  // remplacée par la photo images/prets/<id>.jpg dès qu'elle est déposée.
+  pretVignette(pret, model) {
+    const el = React.createElement;
+    const photos = !!this.state.data.afficherPhotos;
+    const candidates = [`images/prets/${pret.id}.png`, `images/prets/${model.nom}.png`, `images/prets/${pret.id}.jpg`];
+    const onErr = e => { const n = (parseInt(e.target.dataset.i || "0", 10)) + 1; e.target.dataset.i = String(n); if (n < candidates.length) { e.target.src = candidates[n]; } else { e.target.style.display = "none"; } };
+    return el("div", { key: pret.id, style: { position: "relative", width: "100%", height: 300, display: "flex", alignItems: "center", justifyContent: "center" } }, [
+      el("div", { key: "w" }, this.themed("lg", model.accent)),
+      photos ? el("img", { key: "i", src: candidates[0], alt: pret.nom, onError: onErr, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", borderRadius: 10, background: "#0a0e18" } }) : null,
+    ]);
+  }
+
+  // pastille d'option : couleur + photo réelle par-dessus (si dispo)
+  makeSwatch(opt, sel, onClick) {
+    const el = React.createElement;
+    const photos = !!this.state.data.afficherPhotos;
+    return el("div", { key: opt.id, onClick, title: opt.nom, style: this.swatchStyle(opt.hex, sel) },
+      (photos && opt.image) ? el("img", { src: opt.image, alt: opt.nom, onError: e => { e.target.style.display = "none"; }, style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" } }) : null);
+  }
+
+  // pastille de LUNETTE : photo de la lunette SUR le boîtier choisi.
+  // Convention : images/options/lunette-<lunette>-sur-<boitier>.jpg
+  // (ex. images/options/lunette-rouge-sur-or-rose.jpg).
+  makeLunetteSwatch(opt, sel, onClick) {
+    const el = React.createElement;
+    const photos = !!this.state.data.afficherPhotos;
+    const boitierId = this.state.boitierId;
+    const wrap = child => el("div", { key: opt.id, onClick, title: opt.nom, style: this.swatchStyle(opt.hex, sel) }, child);
+    if (!photos) return wrap(null);
+    const src = `images/options/lunette-${opt.id}-sur-${boitierId}.jpg`;
+    return wrap(el("img", {
+      key: opt.id + "-" + boitierId, src, alt: opt.nom,
+      onError: e => { e.target.style.display = "none"; },
+      style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
+    }));
+  }
+
+  // tint a watch by a model's accent (used in catalogue / hero / fiche)
+  themed(size, accent, extra) {
+    const tint = this.props.tintByPlanet === false ? "#3a3d42" : accent;
+    return this.buildWatch({ size, caseC: "#1a2233", bezelC: tint, dialC: "#06080f", subC: "#16213a", strapC: "#161d2b", handC: "#cfe0ff", accentC: accent, glow: accent + "44", ...extra });
+  }
+
+  // ---- handlers ----
+  go(v) { return () => { window.scrollTo(0, 0); this.setState({ view: v }); }; }
+  openFiche(id) { return () => { window.scrollTo(0, 0); this.setState({ view: "modele", modeleId: id }); }; }
+  configure(id) { return () => { window.scrollTo(0, 0); this.setState({ view: "configurateur", modeleId: id }); }; }
+  choisirPret(p) { return () => { window.scrollTo(0, 0); this.setState({ view: "configurateur", modeleId: p.modeleId, boitierId: p.boitierId, braceletMatId: p.braceletMatId, braceletCouleurId: p.braceletCouleurId, lunetteId: p.lunetteId }); }; }
+  demanderPret(p) { return () => this.ouvrirContact(this.recapTextPret(p)); }
+  ouvrirContact(text) { this.setState({ contactOpen: true, contactText: text }); }
+  setFiltre(f) { return () => this.setState({ filtre: f }); }
+  setBoitier(id) { return () => { const ol = this.state.data.optionsLunette; const ids = ol.parBoitier[id] || []; const lun = ids.includes(this.state.lunetteId) ? this.state.lunetteId : ids[0]; this.setState({ boitierId: id, lunetteId: lun }); }; }
+  setMat(id) { return () => { const mat = this.state.data.optionsBracelet.materiaux.find(m => m.id === id); this.setState({ braceletMatId: id, braceletCouleurId: mat.couleurs[0].id }); }; }
+  setCoul(id) { return () => this.setState({ braceletCouleurId: id }); }
+  setLunette(id) { return () => this.setState({ lunetteId: id }); }
+
+  baseUrl() { return location.origin + location.pathname.replace(/[^/]*$/, ""); }
+  recapText() {
+    const m = this.curModele(), b = this.curBoitier(), mat = this.curMat(), c = this.curCoul(), l = this.curLunette();
+    return `Bonjour @Mat_698RVE ! Je souhaite personnaliser une ${m.nom}.\n• Boîtier : ${b.nom}\n• Bracelet : ${mat.nom} — ${c.nom}\n• Lunette : ${l.nom}\n👉 Voir le modèle : ${this.baseUrl()}?modele=${m.id}\nMerci de me confirmer la disponibilité 🙌`;
+  }
+  recapTextPret(p) {
+    const d = this.state.data;
+    const m = d.montres.find(x => x.id === p.modeleId) || d.montres[0];
+    const b = d.optionsBoitier.choices.find(c => c.id === p.boitierId);
+    const mat = d.optionsBracelet.materiaux.find(mm => mm.id === p.braceletMatId);
+    const c = mat ? mat.couleurs.find(cc => cc.id === p.braceletCouleurId) : null;
+    const l = (d.optionsLunette.types || []).find(t => t.id === p.lunetteId);
+    return `Bonjour @Mat_698RVE ! Je souhaite commander « ${m.nom} · Custom ».\n• Boîtier : ${b ? b.nom : ""}\n• Bracelet : ${mat ? mat.nom : ""} — ${c ? c.nom : ""}\n• Lunette : ${l ? l.nom : ""}\n👉 Voir le modèle : ${this.baseUrl()}?modele=${p.modeleId}\nMerci de me confirmer la disponibilité 🙌`;
+  }
+  copyText(text) {
+    const t = text || this.recapText();
+    try {
+      navigator.clipboard.writeText(t).then(() => { this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2000); }).catch(() => this.fallbackCopy(t));
+    } catch (e) { this.fallbackCopy(t); }
+  }
+  fallbackCopy(t) {
+    const ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 2000);
+  }
+
+  // ---- option list builders (precomputed styles -> editor-safe swatches) ----
+  swatchStyle(hex, sel, size) {
+    const sz = size || 120;
+    return { width: sz, height: sz, borderRadius: "50%", background: hex, cursor: "pointer",
+      position: "relative", overflow: "hidden",
+      boxShadow: sel ? "0 0 0 2px #070a12,0 0 0 4px #FFEC00" : "0 0 0 1px rgba(255,255,255,.18)",
+      transition: "box-shadow .15s", flex: "0 0 auto" };
+  }
+  chipStyle(sel) {
+    return { padding: "9px 15px", borderRadius: 22, fontSize: 12, cursor: "pointer", fontFamily: "'Space Mono',monospace",
+      border: sel ? "1px solid #FFEC00" : "1px solid #2a3550", background: sel ? "#FFEC00" : "transparent",
+      color: sel ? "#070a12" : "#9aa6c0", fontWeight: sel ? 700 : 400, whiteSpace: "nowrap" };
+  }
+  modelChipStyle(sel, accent) {
+    return { padding: "8px 14px", borderRadius: 6, fontSize: 12, cursor: "pointer", fontFamily: "'Space Mono',monospace",
+      border: sel ? "1px solid #FFEC00" : "1px solid #1c2740", background: sel ? "rgba(255,236,0,.08)" : "#0b1120",
+      color: sel ? "#FFEC00" : "#9aa6c0", whiteSpace: "nowrap", display: "flex", alignItems: "center", gap: 8 };
+  }
+  filterChipStyle(sel) {
+    return { padding: "8px 16px", borderRadius: 22, fontSize: 11, cursor: "pointer", fontFamily: "'Space Mono',monospace",
+      letterSpacing: ".06em", textTransform: "uppercase",
+      border: sel ? "1px solid #FFEC00" : "1px solid #2a3550", background: sel ? "#FFEC00" : "transparent",
+      color: sel ? "#070a12" : "#7e8aa3", fontWeight: sel ? 700 : 400 };
+  }
+
+  comparatifEl() {
+    const el = React.createElement;
+    const photos = !!this.state.data.afficherPhotos;
+    const m = this.curModele();
+    const cards = [
+      { label: "Originale", src: m.imageOriginale, watch: this.themed("md", m.accent) },
+      { label: "Custom · Caoutchouc", src: m.imageCustomCaoutchouc, watch: this.buildWatch({ size: "md", caseC: "#1b1b1b", bezelC: m.accent, dialC: "#06080f", subC: "#16151a", strapC: "#1b1b1b", handC: "#fff", accentC: m.accent, glow: m.accent + "44" }) },
+      { label: "Custom · Acier", src: m.imageCustomAcier, watch: this.buildWatch({ size: "md", caseC: "#c9c6bf", bezelC: m.accent, dialC: "#06080f", subC: "#16151a", strapC: "#c9c6bf", handC: "#0b0b0b", accentC: m.accent, glow: m.accent + "33" }) },
+    ];
+    return el("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16 } },
+      cards.map((c, i) => el("div", { key: i, style: { border: "1px solid #1c2740", borderRadius: 10, overflow: "hidden", background: "radial-gradient(circle at 50% 30%,#101a2e,#0a0e18)" } }, [
+        el("div", { key: "fr", style: { position: "relative", height: 280, display: "flex", alignItems: "center", justifyContent: "center" } }, [
+          c.watch,
+          photos ? el("img", { key: "img", src: c.src, alt: c.label, onError: e => { if (!e.target.dataset.p) { e.target.dataset.p = "1"; e.target.src = c.src.replace(/\.jpg$/, ".png"); } else { e.target.style.display = "none"; } }, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" } }) : null,
+        ]),
+        el("div", { key: "lb", style: { padding: "14px 16px", borderTop: "1px solid #1c2740" } }, [
+          el("div", { key: "t", style: { fontFamily: "'Bebas Neue',sans-serif", fontSize: 19, letterSpacing: ".03em" } }, c.label),
+          el("div", { key: "h", style: { fontFamily: "'Space Mono',monospace", fontSize: 10, color: "#5a6680", marginTop: 4 } }, "↳ " + c.src),
+        ]),
+      ]))
+    );
+  }
+
+  renderVals() {
+    const annee = new Date().getFullYear();
+    if (!this.state.data) {
+      return { vAccueil: false, vCatalogue: false, vModele: false, vConfig: false, vCommander: false, vPrets: false,
+        goAccueil: this.go("accueil"), goCatalogue: this.go("catalogue"), goPrets: this.go("prets"), goCommander: this.go("commander"), goConfig: this.go("configurateur"),
+        featured: [], catalogue: [], prets: [], filtres: [], configModels: [], boitierOpts: [], braceletMats: [], braceletCouleurs: [], lunetteOpts: [],
+        hideImg: e => { e.target.style.display = "none"; },
+        vignetteImgStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: 8, background: "#0a0e18" },
+        swatchImgStyle: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
+        annee, copyLabel: "Copier" };
+    }
+    const d = this.state.data, v = this.state.view;
+    const m = this.curModele(), b = this.curBoitier(), mat = this.curMat(), c = this.curCoul(), l = this.curLunette();
+
+    const filtres = [
+      { id: "tous", nom: "Tous" }, { id: "planetes", nom: "Planètes" },
+      { id: "lunaire", nom: "Lunaires" }, { id: "terre", nom: "Terre" },
+    ].map(f => ({ nom: f.nom, style: this.filterChipStyle(this.state.filtre === f.id), onClick: this.setFiltre(f.id) }));
+
+    const mapCard = x => ({ id: x.id, nom: x.nom, description: x.description, vignette: this.themedVignette(x), onFiche: this.openFiche(x.id) });
+    const filtered = this.state.filtre === "tous" ? d.montres : d.montres.filter(x => x.famille === this.state.filtre);
+
+    const prets = (d.modelesPrets || []).map(p => {
+      const mod = d.montres.find(x => x.id === p.modeleId) || d.montres[0];
+      const bo = d.optionsBoitier.choices.find(c => c.id === p.boitierId);
+      const mt = d.optionsBracelet.materiaux.find(mm => mm.id === p.braceletMatId);
+      const co = mt ? mt.couleurs.find(c => c.id === p.braceletCouleurId) : null;
+      const lt = (d.optionsLunette.types || []).find(t => t.id === p.lunetteId);
+      const resume = `Boîtier ${bo ? bo.nom : ""} · ${mt ? mt.nom : ""}${co ? " " + co.nom : ""} · Lunette ${lt ? lt.nom : ""}`;
+      return { nom: mod.nom + " · Custom", resume, vignette: this.pretVignette(p, mod), onChoisir: this.choisirPret(p), onDemander: this.demanderPret(p) };
+    });
+
+    const configWatch = this.buildWatch({
+      size: "lg", caseC: b.hex, bezelC: l.hex, tachyC: l.texte, dialC: "#08090f", subC: "#14151c",
+      strapC: c.hex, handC: "#f3f3ee", accentC: m.accent, glow: m.accent + "55",
+    });
+
+    return {
+      annee,
+      vAccueil: v === "accueil", vCatalogue: v === "catalogue", vModele: v === "modele", vConfig: v === "configurateur", vCommander: v === "commander", vPrets: v === "prets",
+      goAccueil: this.go("accueil"), goCatalogue: this.go("catalogue"), goPrets: this.go("prets"), goCommander: this.go("commander"), goConfig: this.go("configurateur"),
+
+      heroWatch: this.buildWatch({ size: "lg", caseC: "#2a3550", bezelC: "#1a2740", dialC: "#06080f", subC: "#16213a", strapC: "#161d2b", handC: "#cfe0ff", accentC: "#FFEC00", glow: "rgba(110,168,255,.3)" }),
+      featured: d.montres.slice(0, 4).map(mapCard),
+      catalogue: filtered.map(mapCard),
+      prets,
+      filtres,
+
+      // fiche
+      ficheNom: m.nom, ficheAccent: m.accent, ficheDescription: m.description,
+      comparatif: this.comparatifEl(),
+      ficheConfigurer: this.configure(m.id),
+
+      // configurateur
+      configNom: m.nom,
+      configWatch,
+      configModels: d.montres.map(x => ({ nom: x.nom, style: this.modelChipStyle(x.id === this.state.modeleId, x.accent), onClick: this.configure(x.id) })),
+      boitierOpts: d.optionsBoitier.choices.map(o => this.makeSwatch(o, o.id === this.state.boitierId, this.setBoitier(o.id))),
+      braceletMats: d.optionsBracelet.materiaux.map(o => ({ nom: o.nom, style: this.chipStyle(o.id === this.state.braceletMatId), onClick: this.setMat(o.id) })),
+      braceletCouleurs: mat.couleurs.map(o => this.makeSwatch(o, o.id === this.state.braceletCouleurId, this.setCoul(o.id))),
+      lunetteOpts: this.lunettesDispo().map(o => this.makeLunetteSwatch(o, o.id === this.state.lunetteId, this.setLunette(o.id))),
+      recapBoitier: b.nom, recapBracelet: mat.nom + " · " + c.nom, recapLunette: l.nom,
+
+      demander: () => this.ouvrirContact(this.recapText()),
+      vContact: this.state.contactOpen,
+      contactWhatsapp: () => { window.open("https://wa.me/33621926195?text=" + encodeURIComponent(this.state.contactText), "_blank"); this.setState({ contactOpen: false }); },
+      contactInstagram: () => { this.copyText(this.state.contactText); window.open("https://ig.me/m/Mat_698RVE", "_blank"); this.setState({ contactOpen: false }); },
+      contactSnapchat: () => { this.copyText(this.state.contactText); window.open("https://www.snapchat.com/add/mathis.alies", "_blank"); this.setState({ contactOpen: false }); },
+      fermerContact: () => this.setState({ contactOpen: false }),
+      copier: () => this.copyText(),
+      copyLabel: this.state.copied ? "Copié ✓" : "Copier",
+      hideImg: e => { e.target.style.display = "none"; },
+      vignetteImgStyle: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", borderRadius: 8, background: "#0a0e18" },
+      swatchImgStyle: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
+    };
+  }
+}
+</script>
+</body>
+</html>

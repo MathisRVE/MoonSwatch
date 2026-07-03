@@ -1,0 +1,10 @@
+[build]
+  # Site 100 % statique : aucun build, aucun back-end.
+  publish = "."
+  command = ""
+
+# Cache long pour les images (remplaçables à la main).
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
