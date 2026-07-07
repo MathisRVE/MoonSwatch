@@ -385,28 +385,24 @@ class Component extends DCLogic {
       (photos && opt.image) ? el("img", { src: opt.image, alt: opt.nom, onError: e => { e.target.style.display = "none"; }, style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" } }) : null);
   }
 
-  // pastille de LUNETTE : photo de la lunette SUR le boîtier choisi.
-  // Les fichiers gardent les noms EXACTS déposés par l'utilisateur (verbeux),
-  // reliés ici par boîtier -> id de lunette. NB : « tackymetre » pour argent,
-  // « tachymetre » pour les autres ; « ecriture-or » pour l'or jaune.
+  // pastille de LUNETTE.
+  // - Boîtier ARGENT : réutilise les rendus plein cadre (images/pilote), recadrés par la bulle.
+  // - Autres boîtiers : gros plans, noms de fichiers EXACTS de l'utilisateur
+  //   (« tachymetre » ; « ecriture-or » pour l'or jaune).
   makeLunetteSwatch(opt, sel, onClick) {
     const el = React.createElement;
     const photos = !!this.state.data.afficherPhotos;
     const boitierId = this.state.boitierId;
     const wrap = child => el("div", { key: opt.id, onClick, title: opt.nom, style: this.swatchStyle(opt.hex, sel) }, child);
     if (!photos) return wrap(null);
+    if (boitierId === "argent") {
+      return wrap(el("img", {
+        key: opt.id + "-argent-rendu", src: `images/pilote/mars-argent-${opt.id}.jpg`, alt: opt.nom,
+        onError: e => { e.target.style.display = "none"; },
+        style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
+      }));
+    }
     const fichiers = {
-      "argent": {
-        "noir-tachy-orange": "boitier-argent-lunette-noir-ecriture-blanc-tackymetre-orange.jpg",
-        "bleu-tachy-orange": "boitier-argent-lunette-bleu-ecriture-blanc-tackymetre-orange.jpg",
-        "rouge": "boitier-argent-lunette-rouge-ecriture-blanc-tackymetre-blanc.jpg",
-        "vert": "boitier-argent-lunette-vert-ecriture-blanc-tackymetre-blanc.jpg",
-        "bleu": "boitier-argent-lunette-bleu-ecriture-blanc-tackymetre-blanc.jpg",
-        "noir": "boitier-argent-lunette-noir-ecriture-blanc-tackymetre-blanc.jpg",
-        "blanc": "boitier-argent-lunette-blanc-ecriture-noir-tackymetre-noir.jpg",
-        "noir-or-jaune": "boitier-argent-lunette-noir-ecriture-or-jaune-tackymetre-or-jaune.jpg",
-        "noir-or-rose": "boitier-argent-lunette-noir-ecriture-or-rose-tackymetre-or-rose.jpg",
-      },
       "or-jaune": {
         "vert": "boitier-or-jaune-lunette-vert-ecriture-blanc-tachymetre-blanc.jpg",
         "bleu": "boitier-or-jaune-lunette-bleu-ecriture-blanc-tachymetre-blanc.jpg",
