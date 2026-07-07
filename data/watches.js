@@ -99,9 +99,10 @@ export const optionsLunette = {
     { id: "blanc",             nom: "Blanc",                     hex: "#e8e4db", texte: "#1b1b1b" },
     { id: "noir-or-jaune",     nom: "Noir · Écriture or jaune",  hex: "#1b1b1b", texte: "#d4af45" },
     { id: "noir-or-rose",      nom: "Noir · Écriture or rose",   hex: "#1b1b1b", texte: "#d9a98c" },
+    { id: "argent",            nom: "Argent",                    hex: "#c9c6bf", texte: "#1b1b1b" },
   ],
   parBoitier: {
-    "argent":   ["noir-tachy-orange", "bleu-tachy-orange", "rouge", "vert", "bleu", "noir", "blanc", "noir-or-jaune", "noir-or-rose"],
+    "argent":   ["noir-tachy-orange", "bleu-tachy-orange", "rouge", "vert", "bleu", "noir", "blanc", "noir-or-jaune", "noir-or-rose", "argent"],
     "or-jaune": ["vert", "bleu", "noir", "noir-or-jaune"],
     "or-rose":  ["noir-tachy-orange", "rouge", "vert", "noir-or-rose"],
     "noir":     ["noir-tachy-orange", "bleu", "noir", "blanc", "noir-or-jaune", "noir-or-rose"],
