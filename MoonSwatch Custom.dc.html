@@ -386,17 +386,52 @@ class Component extends DCLogic {
   }
 
   // pastille de LUNETTE : photo de la lunette SUR le boîtier choisi.
-  // Convention : images/options/lunette-<lunette>-sur-<boitier>.jpg
-  // (ex. images/options/lunette-rouge-sur-or-rose.jpg).
+  // Les fichiers gardent les noms EXACTS déposés par l'utilisateur (verbeux),
+  // reliés ici par boîtier -> id de lunette. NB : « tackymetre » pour argent,
+  // « tachymetre » pour les autres ; « ecriture-or » pour l'or jaune.
   makeLunetteSwatch(opt, sel, onClick) {
     const el = React.createElement;
     const photos = !!this.state.data.afficherPhotos;
     const boitierId = this.state.boitierId;
     const wrap = child => el("div", { key: opt.id, onClick, title: opt.nom, style: this.swatchStyle(opt.hex, sel) }, child);
     if (!photos) return wrap(null);
-    const src = `images/options/lunette-${opt.id}-sur-${boitierId}.jpg`;
+    const fichiers = {
+      "argent": {
+        "noir-tachy-orange": "boitier-argent-lunette-noir-ecriture-blanc-tackymetre-orange.jpg",
+        "bleu-tachy-orange": "boitier-argent-lunette-bleu-ecriture-blanc-tackymetre-orange.jpg",
+        "rouge": "boitier-argent-lunette-rouge-ecriture-blanc-tackymetre-blanc.jpg",
+        "vert": "boitier-argent-lunette-vert-ecriture-blanc-tackymetre-blanc.jpg",
+        "bleu": "boitier-argent-lunette-bleu-ecriture-blanc-tackymetre-blanc.jpg",
+        "noir": "boitier-argent-lunette-noir-ecriture-blanc-tackymetre-blanc.jpg",
+        "blanc": "boitier-argent-lunette-blanc-ecriture-noir-tackymetre-noir.jpg",
+        "noir-or-jaune": "boitier-argent-lunette-noir-ecriture-or-jaune-tackymetre-or-jaune.jpg",
+        "noir-or-rose": "boitier-argent-lunette-noir-ecriture-or-rose-tackymetre-or-rose.jpg",
+      },
+      "or-jaune": {
+        "vert": "boitier-or-jaune-lunette-vert-ecriture-blanc-tachymetre-blanc.jpg",
+        "bleu": "boitier-or-jaune-lunette-bleu-ecriture-blanc-tachymetre-blanc.jpg",
+        "noir": "boitier-or-jaune-lunette-noir-ecriture-blanc-tachymetre-blanc.jpg",
+        "noir-or-jaune": "boitier-or-jaune-lunette-noir-ecriture-or-tachymetre-or.jpg",
+      },
+      "or-rose": {
+        "noir-tachy-orange": "boitier-or-rose-lunette-noir-ecriture-blanc-tachymetre-orange.jpg",
+        "rouge": "boitier-or-rose-lunette-rouge-ecriture-blanc-tachymetre-blanc.jpg",
+        "vert": "boitier-or-rose-lunette-vert-ecriture-blanc-tachymetre-blanc.jpg",
+        "noir-or-rose": "boitier-or-rose-lunette-noir-ecriture-or-rose-tachymetre-or-rose.jpg",
+      },
+      "noir": {
+        "noir-tachy-orange": "boitier-noir-lunette-noir-ecriture-blanc-tachymetre-orange.jpg",
+        "bleu": "boitier-noir-lunette-bleu-ecriture-blanc-tachymetre-blanc.jpg",
+        "noir": "boitier-noir-lunette-noir-ecriture-blanc-tachymetre-blanc.jpg",
+        "blanc": "boitier-noir-lunette-blanc-ecriture-noir-tachymetre-noir.jpg",
+        "noir-or-jaune": "boitier-noir-lunette-noir-ecriture-or-jaune-tachymetre-or-jaune.jpg",
+        "noir-or-rose": "boitier-noir-lunette-noir-ecriture-or-rose-tachymetre-or-rose.jpg",
+      },
+    };
+    const fname = (fichiers[boitierId] || {})[opt.id];
+    if (!fname) return wrap(null);
     return wrap(el("img", {
-      key: opt.id + "-" + boitierId, src, alt: opt.nom,
+      key: opt.id + "-" + boitierId, src: "images/options/" + fname, alt: opt.nom,
       onError: e => { e.target.style.display = "none"; },
       style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
     }));
@@ -532,15 +567,19 @@ class Component extends DCLogic {
       size: "lg", caseC: b.hex, bezelC: l.hex, tachyC: l.texte, dialC: "#08090f", subC: "#14151c",
       strapC: c.hex, handC: "#f3f3ee", accentC: m.accent, glow: m.accent + "55",
     });
-    // Aperçu photo « pilote » : si images/pilote/<modele>-<boitier>.jpg existe, on l'affiche
-    // par-dessus la montre stylisée (repli .png, puis montre stylisée si aucune photo).
+    // Aperçu photo « pilote » : on cherche l'image la plus précise dispo
+    // (boîtier + lunette), puis on retombe sur (boîtier seul), puis sur la montre stylisée.
     const elc = React.createElement;
-    const pilotBase = `images/pilote/${this.state.modeleId}-${this.state.boitierId}`;
+    const _M = this.state.modeleId, _B = this.state.boitierId, _L = this.state.lunetteId;
+    const pilotCandidats = [
+      `images/pilote/${_M}-${_B}-${_L}.jpg`, `images/pilote/${_M}-${_B}-${_L}.png`,
+      `images/pilote/${_M}-${_B}.jpg`,       `images/pilote/${_M}-${_B}.png`,
+    ];
     const configPreview = elc("div", { style: { position: "relative", width: 200, height: 262, display: "flex", alignItems: "center", justifyContent: "center" } }, [
       elc("div", { key: "w" }, configWatch),
       elc("img", {
-        key: "p-" + this.state.modeleId + "-" + this.state.boitierId, src: pilotBase + ".jpg", alt: "",
-        onError: e => { if (!e.target.dataset.png) { e.target.dataset.png = "1"; e.target.src = pilotBase + ".png"; } else { e.target.style.display = "none"; } },
+        key: "p-" + _M + "-" + _B + "-" + _L, src: pilotCandidats[0], alt: "",
+        onError: e => { const n = (parseInt(e.target.dataset.i || "0", 10)) + 1; e.target.dataset.i = String(n); if (n < pilotCandidats.length) { e.target.src = pilotCandidats[n]; } else { e.target.style.display = "none"; } },
         style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", borderRadius: 10 },
       }),
     ]);
