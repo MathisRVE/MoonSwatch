@@ -31,10 +31,10 @@ export const optionsBoitier = {
   label: "Boîtier",
   sousTitre: "Couleur / finition",
   choices: [
-    { id: "argent",  nom: "Argent",   hex: "#cbc8c1", image: "images/options/boitier-argent.jpg" },
-    { id: "or-rose", nom: "Or rose",  hex: "#d9a98c", image: "images/options/boitier-or-rose.jpg" },
-    { id: "or-jaune",nom: "Or jaune", hex: "#d4af45", image: "images/options/boitier-or-jaune.jpg" },
-    { id: "noir",    nom: "Noir",     hex: "#1b1b1b", image: "images/options/boitier-noir.jpg" },
+    { id: "argent",  nom: "Argent",   hex: "#cbc8c1", image: "images/pilote/mars-argent.jpg" },
+    { id: "or-rose", nom: "Or rose",  hex: "#d9a98c", image: "images/pilote/mars-or-rose.jpg" },
+    { id: "or-jaune",nom: "Or jaune", hex: "#d4af45", image: "images/pilote/mars-or-jaune.jpg" },
+    { id: "noir",    nom: "Noir",     hex: "#1b1b1b", image: "images/pilote/mars-noir.jpg" },
   ],
 };
 
