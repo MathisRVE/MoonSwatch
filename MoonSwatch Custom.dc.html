@@ -186,7 +186,16 @@
         </div>
         <div style="height:1px;background:#141b2b"></div>
         <div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">02 · Bracelet</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapBracelet }}</div></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">02 · Lunette</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapLunette }}</div></div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <sc-for list="{{ lunetteOpts }}" as="lo" hint-placeholder-count="7">
+              {{ lo }}
+            </sc-for>
+          </div>
+        </div>
+        <div style="height:1px;background:#141b2b"></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">03 · Bracelet</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapBracelet }}</div></div>
           <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px">
             <sc-for list="{{ braceletMats }}" as="bm" hint-placeholder-count="3">
               <div onClick="{{ bm.onClick }}" style="{{ bm.style }}">{{ bm.nom }}</div>
@@ -195,15 +204,6 @@
           <div style="display:flex;gap:14px;flex-wrap:wrap">
             <sc-for list="{{ braceletCouleurs }}" as="bc" hint-placeholder-count="6">
               {{ bc }}
-            </sc-for>
-          </div>
-        </div>
-        <div style="height:1px;background:#141b2b"></div>
-        <div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em">03 · Lunette</div><div style="font-family:'Space Mono',monospace;font-size:11px;color:#FFEC00">{{ recapLunette }}</div></div>
-          <div style="display:flex;gap:14px;flex-wrap:wrap">
-            <sc-for list="{{ lunetteOpts }}" as="lo" hint-placeholder-count="7">
-              {{ lo }}
             </sc-for>
           </div>
         </div>
