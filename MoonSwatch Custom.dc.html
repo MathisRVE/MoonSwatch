@@ -378,11 +378,13 @@ class Component extends DCLogic {
   }
 
   // pastille d'option : couleur + photo réelle par-dessus (si dispo)
-  makeSwatch(opt, sel, onClick) {
+  makeSwatch(opt, sel, onClick, zoom) {
     const el = React.createElement;
     const photos = !!this.state.data.afficherPhotos;
+    const imgStyle = { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" };
+    if (zoom) { imgStyle.transform = "scale(1.5)"; imgStyle.transformOrigin = "50% 45%"; }
     return el("div", { key: opt.id, onClick, title: opt.nom, style: this.swatchStyle(opt.hex, sel) },
-      (photos && opt.image) ? el("img", { src: opt.image, alt: opt.nom, onError: e => { e.target.style.display = "none"; }, style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" } }) : null);
+      (photos && opt.image) ? el("img", { src: opt.image, alt: opt.nom, onError: e => { e.target.style.display = "none"; }, style: imgStyle }) : null);
   }
 
   // pastille de LUNETTE.
@@ -399,7 +401,7 @@ class Component extends DCLogic {
       return wrap(el("img", {
         key: opt.id + "-argent-rendu", src: `images/pilote/mars-argent-${opt.id}.jpg`, alt: opt.nom,
         onError: e => { e.target.style.display = "none"; },
-        style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" },
+        style: { width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%", transform: "scale(1.5)", transformOrigin: "50% 45%" },
       }));
     }
     const fichiers = {
@@ -600,7 +602,7 @@ class Component extends DCLogic {
       configNom: m.nom,
       configWatch, configPreview,
       configModels: d.montres.map(x => ({ nom: x.nom, style: this.modelChipStyle(x.id === this.state.modeleId, x.accent), onClick: this.configure(x.id) })),
-      boitierOpts: d.optionsBoitier.choices.map(o => this.makeSwatch(o, o.id === this.state.boitierId, this.setBoitier(o.id))),
+      boitierOpts: d.optionsBoitier.choices.map(o => this.makeSwatch(o, o.id === this.state.boitierId, this.setBoitier(o.id), true)),
       braceletMats: d.optionsBracelet.materiaux.map(o => ({ nom: o.nom, style: this.chipStyle(o.id === this.state.braceletMatId), onClick: this.setMat(o.id) })),
       braceletCouleurs: mat.couleurs.map(o => this.makeSwatch(o, o.id === this.state.braceletCouleurId, this.setCoul(o.id))),
       lunetteOpts: this.lunettesDispo().map(o => this.makeLunetteSwatch(o, o.id === this.state.lunetteId, this.setLunette(o.id))),
